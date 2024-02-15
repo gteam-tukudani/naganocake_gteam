@@ -1,0 +1,7 @@
+<header>
+<% if customer_signed_in? %>
+<%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'nav-link text-light' %>
+<% else %>
+<%= link_to "ログイン", new_customer_session_path ,class: 'nav-link text-light' %>
+<% end %>
+</header>
