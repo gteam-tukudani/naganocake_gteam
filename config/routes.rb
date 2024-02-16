@@ -18,6 +18,7 @@ Rails.application.routes.draw do
    patch "customers/information" => "customers/update"
    get "customers/unsubscribe" => "customers/unsubscribe"
    patch "customers/withdraw" => "customers/withdraw"
+   resources :orders, only: [:new, :create, :show, :index]
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
