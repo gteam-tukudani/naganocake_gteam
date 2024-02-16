@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_15_103222) do
+ActiveRecord::Schema.define(version: 2024_02_16_051657) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "name", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,7 +41,7 @@ ActiveRecord::Schema.define(version: 2024_02_15_103222) do
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
     t.string "postal_code", null: false
-    t.string "address", null: false
+    t.string "adress", null: false
     t.string "telephone_number", null: false
     t.boolean "is_active", null: false
     t.string "reset_password_token"
