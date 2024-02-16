@@ -11,17 +11,16 @@
   <p>電話番号（ハイフンなし）</p>
   <p>パスワード</p>
   <p>パスワード（確認用）</p>
-        <div class="field">
-    　　　　<%= f.label :（姓） %><%= f.text_field :last_name, autofocus: true, autocomplete: "first_name" %> <%= f.label :（名） %><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-  　　　　</div>
-        <div class="field">
-    　　　　<%= f.label :（セイ） %><%= f.text_field :last_name, autofocus: true, autocomplete: "lasy_name" %> <%= f.label :（メイ） %><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-  　　　　</div>
-
-
-
-
-
+        
+        
+  <div class="field">
+  　<%= f.label :（姓） %><%= f.text_field :last_name, autofocus: true, autocomplete: "first_name" %> <%= f.label :（名） %><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+　</div>
+　
+  <div class="field">
+  　<%= f.label :（セイ） %><%= f.text_field :last_name, autofocus: true, autocomplete: "lasy_name" %> <%= f.label :（メイ） %><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+　</div>
+　
   <div class="field">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
