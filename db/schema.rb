@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2024_02_16_072429) do
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
     t.string "postal_code", null: false
-    t.string "adress", null: false
+    t.string "address", null: false
     t.string "telephone_number", null: false
     t.boolean "is_active", null: false
     t.string "reset_password_token"
