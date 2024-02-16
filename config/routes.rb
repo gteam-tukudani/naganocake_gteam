@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 }
   devise_for :admin, controllers: {
   sessions: "admin/sessions"
-}
-# 顧客側のルーティング
+  }
+
   scope module: :public do
    root to: "homes#top"
    get "homes/about" => "homes#about", as: 'about'
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
    patch "customers/information" => "customers/update"
    get "customers/unsubscribe" => "customers/unsubscribe"
    patch "customers/withdraw" => "customers/withdraw"
+   resources :item, only: [:index, :show]
    resources :orders, only: [:new, :create, :show, :index]
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
