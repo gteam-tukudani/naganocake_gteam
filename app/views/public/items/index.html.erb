@@ -6,6 +6,12 @@
   </div>
   <div>
     <% @item.each do |item| %>
+      <%= render "item_eath", item: item %>
+    <% end %>
+  </div>
+  
+  
+  <div><%= paginate(@products) %></div>
     
     
     
