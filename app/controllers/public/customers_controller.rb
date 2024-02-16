@@ -1,11 +1,11 @@
 class Public::CustomersController < ApplicationController
 
   def show
-    @custmer = current_custmer
+    @customer = current_customer
   end
 
   def edit
-    @custmer = current_custmer
+    @customer = current_customer
   end
 
   def update
@@ -15,8 +15,8 @@ class Public::CustomersController < ApplicationController
   end
 
   private
-  def custmer_params
-    params.require(:custmer).parmit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email)
+  def customer_params
+    params.require(:customer).parmit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email)
   end
 end
 
