@@ -1,0 +1,15 @@
+<div>
+  <%= image_tag @item, :image, width: "60%", format: "jpg", fallback: "no_image.jpg" %>
+</div>
+      <h2><%= @item.name %></h2>
+      <h4><%= simple_format(@item.description)%></h4>
+      <%  if @item.sales_status == true %>
+        <p class="text-success">販売中</p>
+        <h3>¥ <%= change_price_excluding_tax( @item.price_excluding_tax) %> (税込)</h3>
+        <p><%= render "item_amount_form", cart_item: @cart_item, item: @item %></p>
+      <% else %>
+        <h3 class="text-danger">販売停止中です</h3>
+      <% end %>
+      </div> 
+  </div>
+</div>
