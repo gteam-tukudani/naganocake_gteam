@@ -8,14 +8,7 @@ Rails.application.routes.draw do
 }
   devise_for :admin, controllers: {
   sessions: "admin/sessions"
-<<<<<<< HEAD
   }
-
-  scope module: :public do
-    resources :item, only: [:index, :show]
-=======
-}
-
   scope module: :public do
    root to: "homes#top"
    get "homes/about" => "homes#about", as: 'about'
@@ -24,9 +17,9 @@ Rails.application.routes.draw do
    patch "customers/information" => "customers/update"
    get "customers/unsubscribe" => "customers/unsubscribe"
    patch "customers/withdraw" => "customers/withdraw"
+   resources :item, only: [:index, :show]
    resources :orders, only: [:new, :create, :show, :index]
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
->>>>>>> origin/develop
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
