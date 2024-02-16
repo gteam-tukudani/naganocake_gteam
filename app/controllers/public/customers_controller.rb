@@ -1,4 +1,4 @@
-class Public::CustmersController < ApplicationController
+class Public::CustomersController < ApplicationController
 
   def show
     @custmer = current_custmer
@@ -19,3 +19,5 @@ class Public::CustmersController < ApplicationController
     params.require(:custmer).parmit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email)
   end
 end
+
+
