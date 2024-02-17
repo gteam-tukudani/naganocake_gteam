@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
+
   def after_sign_out_path_for(resource)
     about_path
   end

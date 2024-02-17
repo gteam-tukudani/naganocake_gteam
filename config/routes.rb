@@ -1,5 +1,41 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'order_deralis/update'
+  end
+  namespace :admin do
+    get 'orders/show'
+  end
+  namespace :admin do
+    get 'customers/index'
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/update'
+  end
+  namespace :admin do
+    get 'genres/index'
+    get 'genres/create'
+    get 'genres/edit'
+    get 'genres/update'
+  end
+  namespace :admin do
+    get 'items/index'
+    get 'items/new'
+    get 'items/create'
+    get 'items/show'
+    get 'items/edit'
+    get 'items/update'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
+  namespace :public do
+    get 'cart_items/index'
+    get 'cart_items/update'
+    get 'cart_items/destroy'
+    get 'cart_items/destroy_aii'
+    get 'cart_items/create'
+  end
   devise_for :users
 
   devise_for :customers, controllers: {
@@ -25,7 +61,7 @@ Rails.application.routes.draw do
    patch "customers/information" => "customers/update"
    get "customers/unsubscribe" => "customers/unsubscribe"
    patch "customers/withdraw" => "customers/withdraw"
-   resources :item, only: [:index, :show]
+   resources :items, only: [:index, :show]
    resources :orders, only: [:new, :create, :show, :index]
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
