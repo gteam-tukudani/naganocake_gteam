@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2024_02_16_051657) do
-=======
-ActiveRecord::Schema.define(version: 2024_02_16_072429) do
+ActiveRecord::Schema.define(version: 2024_02_17_044834) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,7 +39,6 @@ ActiveRecord::Schema.define(version: 2024_02_16_072429) do
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
->>>>>>> e9f9bb15c6eb022e44a5731765c8c7e33a0c7b3a
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id", null: false
@@ -65,6 +61,14 @@ ActiveRecord::Schema.define(version: 2024_02_16_072429) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -73,7 +77,7 @@ ActiveRecord::Schema.define(version: 2024_02_16_072429) do
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
     t.string "postal_code", null: false
-    t.string "adress", null: false
+    t.string "address", null: false
     t.string "telephone_number", null: false
     t.boolean "is_active", null: false
     t.string "reset_password_token"
@@ -96,15 +100,25 @@ ActiveRecord::Schema.define(version: 2024_02_16_072429) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "order_details", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "item_id", null: false
+    t.integer "price", null: false
+    t.integer "amount", null: false
+    t.integer "making_status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.integer "customer_id"
-    t.string "postal_code"
-    t.string "address"
-    t.string "name"
-    t.integer "shipping_cost"
-    t.integer "total_payment"
-    t.integer "payment_method"
-    t.integer "status"
+    t.integer "customer_id", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.string "name", null: false
+    t.integer "shipping_cost", null: false
+    t.integer "total_payment", null: false
+    t.integer "payment_method", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
