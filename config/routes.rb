@@ -63,7 +63,7 @@ Rails.application.routes.draw do
     get 'items/update'
   end
   namespace :admin do
-    get "/" => 'homes#top'
+    get "/" =>'homes#top'
   end
   namespace :public do
     get 'cart_items/index'
