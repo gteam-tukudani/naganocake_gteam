@@ -10,8 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_17_044834) do
-
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -77,7 +75,7 @@ ActiveRecord::Schema.define(version: 2024_02_17_044834) do
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
     t.string "postal_code", null: false
-    t.string "address", null: false
+    t.string "adress", null: false
     t.string "telephone_number", null: false
     t.boolean "is_active", null: false
     t.string "reset_password_token"
@@ -137,4 +135,5 @@ ActiveRecord::Schema.define(version: 2024_02_17_044834) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-end
+
+
