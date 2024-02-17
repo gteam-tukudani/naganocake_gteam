@@ -13,10 +13,7 @@ Rails.application.routes.draw do
     get 'customers/update'
   end
   namespace :admin do
-    get 'genres/index'
-    get 'genres/create'
-    get 'genres/edit'
-    get 'genres/update'
+    resources :genres, only: [:index, :create, :edit, :update]
   end
   namespace :admin do
     get 'items/index'
