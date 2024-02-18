@@ -7,10 +7,7 @@ Rails.application.routes.draw do
     get 'orders/show'
   end
   namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
+    resources :customers, only: [:index, :show, :edit, :update] 
   end
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
@@ -32,7 +29,7 @@ Rails.application.routes.draw do
     get 'order_deralis/update'
   end
   namespace :admin do
-    get 'orders/show'
+    resources :orders, only: [:show]
   end
   namespace :admin do
     get 'customers/index'
