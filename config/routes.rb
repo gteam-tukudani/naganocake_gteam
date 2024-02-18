@@ -7,12 +7,12 @@ Rails.application.routes.draw do
     get 'orders/show'
   end
   namespace :admin do
-    resources :customers, only: [:index, :show, :edit, :update] 
+    resources :customers, only: [:index, :show, :edit, :update]
   end
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
-    
+
   end
 
   namespace :admin do
@@ -73,6 +73,8 @@ Rails.application.routes.draw do
    resources :orders, only: [:new, :create, :show, :index]
      post "orders/confirm" => "orders#confirm"
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+   resources :cart_items, only: [:index, :update, :destroy, :create]
+   delete "cart_items/destroy_all" => "cart_items#destroy_all"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
