@@ -1,6 +1,6 @@
 <h1>会員情報編集画面</h1>
 
-<%= form_with model: @customer do |f| %>
+<%= form_with model: @customer, url:customers_information_path, method: :patch do |f| %>
 
   <h3>氏名</h3>
   <%= f.text_field :last_name %>
@@ -23,5 +23,6 @@
   <%= f.text_field :email %>
 
   <%= f.submit "編集内容を保存する" %>
+  <%= link_to "退会する", customers_unsubscribe_path, class:"btn btn-primary ml-3" %>
 
 <% end %>

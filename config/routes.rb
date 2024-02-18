@@ -89,11 +89,7 @@ Rails.application.routes.draw do
    get "customers/unsubscribe" => "customers#unsubscribe"
   # 論理的削除用のルーティング
    patch "customers/withdraw" => "customers#withdraw"
-   get "customers/mypage" => "customers/show"
-   get "customers/information/edit" => "customers/edit"
-   patch "customers/information" => "customers/update"
-   get "customers/unsubscribe" => "customers/unsubscribe"
-   patch "customers/withdraw" => "customers/withdraw"
+
    resources :items, only: [:index, :show]
    resources :orders, only: [:new, :create, :show, :index]
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
