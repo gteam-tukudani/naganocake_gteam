@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get 'order_deralis/update'
+    resources :order_details, only: [:update]
   end
   namespace :admin do
-    get 'orders/show'
+    resources :orders, only: [:show, :update]
   end
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update] 
@@ -24,18 +24,6 @@ Rails.application.routes.draw do
     get 'cart_items/destroy'
     get 'cart_items/destroy_aii'
     get 'cart_items/create'
-  end
-  namespace :admin do
-    get 'order_deralis/update'
-  end
-  namespace :admin do
-    resources :orders, only: [:show]
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
   end
 
   namespace :admin do
