@@ -26,9 +26,29 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @cart_items = current_customer.cart_items.all
+    @order.customer_id = current_customer.id
+    @order.status = :wait_payment
+
+    if @order.save
+      @cart_items.each do |item|
+        @order_details = OrderDetail.new
+        @order_details.order_id = order.id
+        @order_details.price = cart_item.item.price
+        @order_details.amount = cart_item.amount
+        @order_details.making_status = 0
+        @order_detail.save
+      end
+      @cart_items.destroy_all
+      redirect_to thanks_orders_path
+    else
+      @addresses = Address.all
+      render :new
+    end
 
 
+  end
+
+  def thanks
   end
 
   def index
@@ -37,6 +57,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order_details = OrderDetail.where(order_id: params[:id])
+    @order = Order.find(params[:id])
   end
 
 

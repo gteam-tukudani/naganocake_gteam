@@ -4,7 +4,7 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
   enums:
     order:
-      order_status:
+      status:
         wait_payment: '入金待ち'
         confirm_payment: '入金確認'
         making: '製作中'
@@ -55,6 +55,7 @@ ja:
       default: "%Y/%m/%d"
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
+      month_day: "%-m月%-d日"
     month_names:
     -
     - 1月
@@ -193,4 +194,5 @@ ja:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
+      month_day: "%Y/%-m/%-d"
     pm: 午後
