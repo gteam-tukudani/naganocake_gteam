@@ -8,13 +8,8 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find_by(id: params[:id])
-    if @item
-      @cart_item = CartItem.new
-    else
-      flash[:error] = "Item not found"
-      redirect_to items_path
-    end
+    @item = Item.find(params[:id])
+    @cart_item = CartItem.new
   end
 
 
