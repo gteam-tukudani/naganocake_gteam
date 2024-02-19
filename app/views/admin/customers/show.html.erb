@@ -12,7 +12,7 @@
     <p class="my-3"><strong>会員ステータス </strong><span style="margin-left:90px; color:<%= @customer.is_active ? 'green' : 'gray' %>;"><%= @customer.is_active ? '有効' :  '退会済み'%></span></p>
 
    <%= link_to '編集する', edit_admin_customer_path(@customer), class: 'btn btn-success btn-space' %>
-   <%= link_to '注文履歴一覧を見る', admin_order_path(@customer), class: 'btn btn-info' %>
+   <%= link_to '注文履歴一覧を見る', admin_path, class: 'btn btn-info' %>
 
 
   </div>
