@@ -15,7 +15,7 @@
     <div class="col-xs-10 col-sm-10 col-md-6 col-lg-3">
       <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
         <%= link_to item_path(item) do %>
-          <p class="img-wrap"><%= image_tag item, :image, width: "80%", format: "jpg", fallback: "no_image.jpg" %></p>
+          <%#画像登録%>
         <% end %>
         <div class="card-body">
           <p class="item-details item-name card-text"><%= item.name %></p>
