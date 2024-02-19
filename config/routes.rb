@@ -36,7 +36,6 @@ Rails.application.routes.draw do
     get 'cart_items/destroy_aii'
     get 'cart_items/create'
   end
-  devise_for :users
 
   devise_for :customers, controllers: {
   registrations: "public/registrations",
@@ -45,6 +44,14 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
   sessions: "admin/sessions"
   }
+  
+  devise_scope :admin do
+    get '/admin/sign_out' => 'devise/sessions#destroy'
+  end
+  
+  devise_scope :customer do
+    get '/customers/sign_out' => 'devise/sessions#destroy'
+  end
 
   scope module: :public do
    root to: "homes#top"
