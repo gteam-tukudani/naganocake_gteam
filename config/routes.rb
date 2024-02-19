@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get 'order_deralis/update'
+    resources :order_details, only: [:update]
   end
   namespace :admin do
-    get 'orders/show'
+    resources :orders, only: [:show, :update]
   end
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
@@ -25,18 +25,6 @@ Rails.application.routes.draw do
     get 'cart_items/destroy_aii'
     get 'cart_items/create'
   end
-  namespace :admin do
-    get 'order_deralis/update'
-  end
-  namespace :admin do
-    resources :orders, only: [:show]
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-  end
 
   namespace :admin do
     get "/" =>'homes#top'
@@ -48,7 +36,6 @@ Rails.application.routes.draw do
     get 'cart_items/destroy_aii'
     get 'cart_items/create'
   end
-  devise_for :users
 
   devise_for :customers, controllers: {
   registrations: "public/registrations",
@@ -57,6 +44,14 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
   sessions: "admin/sessions"
   }
+  
+  devise_scope :admin do
+    get '/admin/sign_out' => 'devise/sessions#destroy'
+  end
+  
+  devise_scope :customer do
+    get '/customers/sign_out' => 'devise/sessions#destroy'
+  end
 
   scope module: :public do
    root to: "homes#top"
@@ -74,7 +69,10 @@ Rails.application.routes.draw do
    get "customers/unsubscribe" => "customers/unsubscribe"
    patch "customers/withdraw" => "customers/withdraw"
    resources :items, only: [:index, :show]
-   resources :orders, only: [:new, :create, :show, :index]
+   resources :orders, only: [:new, :create, :show, :index] do
+     get 'thanks', on: :collection
+   end
+     post "orders/confirm" => "orders#confirm"
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
    resources :cart_items, only: [:index, :update, :destroy, :create]
    delete "cart_items/destroy_all" => "cart_items#destroy_all"
