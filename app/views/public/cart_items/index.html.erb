@@ -12,7 +12,7 @@
   <% @cart_item.each do |cart_item| %>
       <tr>
           <td>
-             <%= attachment_image_tag cart_item.item, image, :fill, 300, 300, format: 'jpeg' %>
+             <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50, format: 'jpeg',fallback:"no_image.jpg", size:"50x50" %>
              <%= cart_item.item.name %>
           </td>
           <td><%= cart_item.item.with_tax_price %></td>
