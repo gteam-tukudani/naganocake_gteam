@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
-    
+
   end
 
   namespace :admin do
@@ -69,7 +69,10 @@ Rails.application.routes.draw do
    get "customers/unsubscribe" => "customers/unsubscribe"
    patch "customers/withdraw" => "customers/withdraw"
    resources :items, only: [:index, :show]
-   resources :orders, only: [:new, :create, :show, :index]
+   resources :orders, only: [:new, :create, :show, :index] do
+     get 'thanks', on: :collection
+   end
+     post "orders/confirm" => "orders#confirm"
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
