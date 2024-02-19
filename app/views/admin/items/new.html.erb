@@ -6,19 +6,19 @@
         <tr>
           <div class="form-group">
             <th><%= f.label :商品画像 %></th>
-            
+            <th><%= f.file_field :image, accept: "image/*" %><th>
           </div>
         </tr>
         <tr>
           <div class="form-group">
             <th><%= f.label :商品名 %></th>
-            <td><%= f.text_field :name, placeholder:"商品名" %></td>
+            <td><%= f.text_field :name, size: "37×1", placeholder:"商品名" %></td>
           </div>
         </tr>
         <tr>
           <div class="form-group">
             <th><%= f.label :商品説明 %></th>
-            <td><%= f.text_area :description, size: "50x5", placeholder:"ここに説明文を記述します" %></td>
+            <td><%= f.text_area :introduction, size: "40x10", placeholder:"ここに説明文を記述します" %></td>
           </div>
         </tr>
         <tr>

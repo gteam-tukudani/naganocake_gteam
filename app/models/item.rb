@@ -1,15 +1,21 @@
 class Item < ApplicationRecord
   
   has_one_attached :item_image
-  belongs_to :genre
+  
   has_many :cart_items, dependent: :destroy
   has_many :oeder_details, dependent: :destroy
   has_many :orders, through: :ordr_details
   
-  enum genre_method: { cake: 0, purine: 1, baked_sweets: 2, candy:3 }
+  belongs_to :genre
   
-  def with_tax_price
-    (price_excluding_tax * 1.1).floor
+  def get_item_image
+    unless item_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      item_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    item_image
   end
-
+    
+  
+  
 end
