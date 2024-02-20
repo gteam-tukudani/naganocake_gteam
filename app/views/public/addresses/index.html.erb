@@ -12,6 +12,8 @@
     <p>郵便番号: <%= address.postal_code %></p>
     <p>住所: <%= address.address %></p>
     <p>宛名: <%= address.name %></p>
+    <%= link_to "編集する", edit_address_path(address) %>
+    <%= button_to "削除", address_path(address), method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-danger", form: { class: "d-inline" } %>
   <% end %>
 <% else %>
   <p>配送先がありません。</p>
