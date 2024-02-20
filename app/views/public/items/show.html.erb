@@ -4,7 +4,7 @@
  ここまで消す
 
   <div>
-    <%= image_tag @item, :image, width: "60%", format: "jpg", fallback: "no_image.jpg" %>
+    <%= image_tag @item.image, width: "60%", format: "jpg", fallback: "no_image.jpg" %>
   </div>
   <div>
     <h2><%= @item.name %></h2>
@@ -12,8 +12,9 @@
       <%  if @item.is_active == true %>
         <p>販売中</p>
         <h3>¥ <%= change_introduction(@item.price_introduction) %> (税込)</h3>
+
         <p><%= render "item_form", cart_item: @cart_item, item: @item %></p>
       <% else %>
         <h3>販売停止中です</h3>
       <% end %>
-  </div> 
+  </div>
