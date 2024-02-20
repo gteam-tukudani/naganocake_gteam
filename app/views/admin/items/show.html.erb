@@ -1,0 +1,22 @@
+<div class="container mt-5 mb-5">
+	<div class="row text-center text-xs-center text-sm-left text-md-left ">
+    <div class="col-xs-12 col-sm-6 col-md-6 mx-auto text-right">
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, class: "item-image" %>
+      <% else %>
+        <%= image_tag "no_image.jpg", class: "default-image" %>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 item-details mx-auto">
+      <h2><%= @item.name %></h2>
+      <h4><%= simple_format(@item.introduction)%></h4>
+      <%  if @item.is_active == true %>
+        <p class="text-success">販売中</p>
+        <h3>¥ <%= price_with_tax( @item.price) %> (税込)</h3>
+      <% else %>
+        <h3 class="text-danger">販売停止中です</h3>
+      <% end %>
+      <%= link_to "編集する", edit_admin_item_path, class:"btn btn-success" %>
+      </div>
+  </div>
+</div>
