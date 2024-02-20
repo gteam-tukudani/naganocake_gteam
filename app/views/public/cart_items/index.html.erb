@@ -12,7 +12,7 @@
   <% @cart_item.each do |cart_item| %>
       <tr>
           <td>
-             <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50, format: 'jpeg',fallback:"no_image.jpg", size:"50x50" %>
+             <%= image_tag @cart_item.item, :image, :fill, 50, 50, format: 'jpeg',fallback:"no_image.jpg", size:"50x50" %>
              <%= cart_item.item.name %>
           </td>
           <td><%= cart_item.item.with_tax_price %></td>
@@ -23,8 +23,8 @@
              <% end %>
           </td>
           <td><%= cart_item.subtotal %></td>
-          <td><%= link_to "削除", destroy_cart_item_path(cart_item.id), method: :delete, "date-confirm" => "商品を削除しますか？" %></td>
-          <% @sum +=  cart_item.subtotal %>
+          <td><%= link_to "削除", cart_item_path(cart_item), method: :delete, data: { confirm: "商品を削除しますか？" } %></td>
+
       </tr>
   <% end %>
     <%= link_to "買い物を続ける", root_path, class: "btn btn-danger btn-sm" %>
