@@ -7,24 +7,18 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
   end
   namespace :admin do
-    resources :customers, only: [:index, :show, :edit, :update] 
+    resources :customers, only: [:index, :show, :edit, :update]
   end
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
-    
+
   end
 
   namespace :admin do
     get 'homes/top'
   end
-  namespace :public do
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/destroy_aii'
-    get 'cart_items/create'
-  end
+ 
 
   namespace :admin do
     get "/" =>'homes#top'
@@ -69,8 +63,14 @@ Rails.application.routes.draw do
    get "customers/unsubscribe" => "customers/unsubscribe"
    patch "customers/withdraw" => "customers/withdraw"
    resources :items, only: [:index, :show]
-   resources :orders, only: [:new, :create, :show, :index]
+   resources :cart_items, only: [:show, :edit, :index, :create, :update, :destroy]
+   resources :orders, only: [:new, :create, :show, :index] do
+     get 'thanks', on: :collection
+   end
+     post "orders/confirm" => "orders#confirm"
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+   resources :cart_items, only: [:index, :update, :destroy, :create]
+   delete "cart_items/destroy_all" => "cart_items#destroy_all"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
