@@ -18,13 +18,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'homes/top'
   end
-  namespace :public do
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/destroy_aii'
-    get 'cart_items/create'
-  end
+ 
 
   namespace :admin do
     get "/" =>'homes#top'
@@ -69,6 +63,7 @@ Rails.application.routes.draw do
    get "customers/unsubscribe" => "customers/unsubscribe"
    patch "customers/withdraw" => "customers/withdraw"
    resources :items, only: [:index, :show]
+   resources :cart_items, only: [:show, :edit, :index, :create, :update, :destroy]
    resources :orders, only: [:new, :create, :show, :index] do
      get 'thanks', on: :collection
    end
