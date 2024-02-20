@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-sm-10 px-sm-0 mx-auto mb-5">
       <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
-      <table>
+      <table class="table  table-borderless">
         <tr>
           <div class="form-group">
             <th><%= f.label :商品画像 %></th>

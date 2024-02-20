@@ -63,14 +63,14 @@ Rails.application.routes.draw do
    get "customers/unsubscribe" => "customers/unsubscribe"
    patch "customers/withdraw" => "customers/withdraw"
    resources :items, only: [:index, :show]
-   resources :cart_items, only: [:show, :edit, :index, :create, :update, :destroy]
+  # resources :cart_items, only: [:show, :edit, :index, :create, :update, :destroy]
    resources :orders, only: [:new, :create, :show, :index] do
      get 'thanks', on: :collection
    end
      post "orders/confirm" => "orders#confirm"
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-   resources :cart_items, only: [:index, :update, :destroy, :create]
    delete "cart_items/destroy_all" => "cart_items#destroy_all"
+   resources :cart_items, only: [:index, :update, :destroy, :create]   
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
