@@ -11,4 +11,8 @@ class Item < ApplicationRecord
 
    validates :price, presence: true, numericality: { greater_than: 0 }
 
+  def with_tax_price
+    (price * 1.1).floor
+  end
+
 end

@@ -8,7 +8,10 @@ class CartItem < ApplicationRecord
     (price * 1.10).round
   end
 
+    has_one_attached :image
+
   def subtotal
       item.with_tax_price * amount
   end
+
 end

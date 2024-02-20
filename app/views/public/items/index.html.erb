@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <h2>商品一覧(全<%= @items_all.count %>件)</h2>
+      <h2>商品一覧(全<%= @item.count %>件)</h2>
     </div>
   </div>
   <div>
-    <% @items.each do |item|%>
+    <% @item.each do |item|%>
     <div class="col-xs-10 col-sm-10 col-md-6 col-lg-3">
       <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
         <%= link_to(image_tag(url_for(item.image), alt: item.name), item_path(item)) if item.image.attached? %>
@@ -20,5 +20,6 @@
       </div>
     <% end %>
   </div>
-  <%= paginate @items %>
-</div> 
+  <%= paginate @item, class:"text-center" %>
+</div>
+
