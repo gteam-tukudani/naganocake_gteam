@@ -1,4 +1,3 @@
-
  <br>
  <br>
 <div>
@@ -7,23 +6,22 @@
   <% else %>
     <%= image_tag "no_image.jpg", size: "300x300" %>
   <% end %>
-  </div>
-  <div>
-    <h2><%= @item.name %></h2>
+    </div>
+    <div>
+      <h2><%= @item.name %></h2>
       <h4><%= simple_format(@item.introduction)%></h4>
       <%  if @item.is_active == true %>
         <p>販売中</p>
-          <% if customer_signed_in? %>
-            <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+        <% if customer_signed_in? %>
+          <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
             <%= f.hidden_field :item_id, value: @item.id %>
-            <%= f.number_field :amount, item: "個数選択", min: 1, max: 50 %>
+            <%= f.select :amount, options_for_select(1..10), {}, {class: "select-class"} %>
             <%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %>
-          <% end %>
-      <% else %>
+           <% end %>
+        <% else %>
         <p>ログインしてください。</p>
-      <% end %> 
+      <% end %>
       <% else %>
         <h3>販売停止</h3>
       <% end %>
-    </div>
-
+</div>
