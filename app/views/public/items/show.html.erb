@@ -1,19 +1,27 @@
- 何も表示されない為下記を記入しました
- 削除しましょう
-<div>購入商品詳細消すやつ</div>
- ここまで消す
-
-  <div>
-    <%= image_tag @item, :image, width: "60%", format: "jpg", fallback: "no_image.jpg" %>
+ <br>
+ <br>
+<div>
+  <% if @item.image.attached? %>
+    <%= image_tag @item.image, size: "300x300" %>
+  <% else %>
+    <%= image_tag "no_image.jpg", size: "300x300" %>
+  <% end %>
   </div>
   <div>
     <h2><%= @item.name %></h2>
       <h4><%= simple_format(@item.introduction)%></h4>
       <%  if @item.is_active == true %>
         <p>販売中</p>
-        <h3>¥ <%= change_introduction(@item.price_introduction) %> (税込)</h3>
-        <p><%= render "item_form", cart_item: @cart_item, item: @item %></p>
+          <% if customer_signed_in? %>
+            <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.number_field :amount, item: "個数選択", min: 1, max: 50 %>
+            <%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %>
+          <% end %>
       <% else %>
-        <h3>販売停止中です</h3>
+        <p>ログインしてください。</p>
+      <% end %> 
+      <% else %>
+        <h3>販売停止</h3>
       <% end %>
-  </div> 
+</div>

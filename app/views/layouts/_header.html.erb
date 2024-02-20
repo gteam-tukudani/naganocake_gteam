@@ -14,7 +14,7 @@
   <h1>ようこそ<%= current_customer.last_name %>さん！</h1>
   <%= link_to "マイページ", customers_mypage_path, class: 'nav-link text-light' %>
   <%= link_to "商品一覧", items_path, class: 'nav-link text-light' %>
-  <%= link_to "カート", cart_path, class: 'nav-link text-light' %>
+  <%= link_to "カート", root_path, class: 'nav-link text-light' %>
   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-light' %>
 <% else %>
   <%= link_to "About", about_path, class: 'nav-link text-light' %>
