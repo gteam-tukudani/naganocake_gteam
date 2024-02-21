@@ -13,7 +13,7 @@
       <%  if @item.is_active == true %>
         <p>販売中</p>
         <% if customer_signed_in? %>
-          <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+          <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
             <%= f.hidden_field :item_id, value: @item.id %>
             <%= f.select :amount, options_for_select(1..10), {}, {class: "select-class"} %>
             <%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %>
