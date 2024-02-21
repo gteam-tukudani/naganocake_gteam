@@ -13,7 +13,7 @@ class Public::SessionsController < Devise::SessionsController
        # 【処理内容4】 アクティブでない会員に対する処理
       unless customer.active?
        # アカウントが無効な場合にログインを拒否し、エラーメッセージを表示
-        flash[:alert] = "アカウント作成に失敗しました。"
+        flash[:alert] = "ログインに失敗しました"
         redirect_to new_customer_session_path and return
       end
     end
