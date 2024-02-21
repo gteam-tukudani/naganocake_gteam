@@ -28,13 +28,15 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.status = :wait_payment
+    @cart_items = current_customer.cart_items
+
 
     if @order.save
       @cart_items.each do |item|
         @order_details = OrderDetail.new
-        @order_details.order_id = order.id
-        @order_details.price = cart_item.item.price
-        @order_details.amount = cart_item.amount
+        @order_details.order_id = @order.id
+        @order_details.price = @cart_item.item.price
+        @order_details.amount = @cart_item.amount
         @order_details.making_status = 0
         @order_detail.save
       end
