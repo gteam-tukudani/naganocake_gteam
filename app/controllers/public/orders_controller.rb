@@ -7,16 +7,16 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    if params[:order][:address_id] == "0"
+    if params[:order][:address_option] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.first_name + current_customer.last_name
-    elsif params[:order][:address_id] == "1"
-       @address = Address.find(params[:order][:address_id])
+    elsif params[:order][:address_option] == "1"
+       @address = Address.find(params[:order][:address_option])
        @order.postal_code = @address.postal_code
        @order.address = @address.address
        @order.name = @address.name
-    elsif params[:order][:address_id] == "2"
+    elsif params[:order][:address_option] == "2"
       @order.current_customer_id = current_customer.id
     end
       @cart_items = current_customer.cart_items
@@ -30,15 +30,32 @@ class Public::OrdersController < ApplicationController
     @order.status = :wait_payment
     @cart_items = current_customer.cart_items
 
+    case params[:order][:address_option].to_i
+    when 0
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = "#{current_customer.last_name} #{current_customer.first_name}"
+    when 1
+      registered_address = Address.find(params[:order][:address_option])
+      @order.postal_code = registered_address.postal_code
+      @order.address = registered_address.address
+      @order.name = registered_address.name
+    when 2
+      @order.postal_code = params[:order][:postal_code]
+      @order.address = params[:order][:address]
+      @order.name = params[:order][:name]
+    end
+
 
     if @order.save
       @cart_items.each do |item|
-        @order_details = OrderDetail.new
-        @order_details.order_id = @order.id
-        @order_details.price = @cart_item.item.price
-        @order_details.amount = @cart_item.amount
-        @order_details.making_status = 0
-        @order_detail.save
+        order_details = OrderDetail.new
+        order_details.order_id = @order.id
+        order_details.item_id = item.item.id
+        order_details.price = item.item.price
+        order_details.amount = item.amount
+        order_details.making_status = 0
+        order_details.save
       end
       @cart_items.destroy_all
       redirect_to thanks_orders_path
@@ -67,7 +84,7 @@ class Public::OrdersController < ApplicationController
 private
 
   def order_params
-    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status, :address_option)
   end
 
 end
