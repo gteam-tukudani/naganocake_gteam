@@ -13,7 +13,11 @@
 
     <tr>
       <td>
-        <%= attachment_image_tag cart_item.item, :image, :fill, 300, 300, format: 'jpeg' %>
+        <% if cart_item.item.image.attached? %>
+          <%= image_tag cart_item.item.image, size: "50x50" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", size: "50x50" %>
+        <% end %>
         <%= cart_item.item.name %>
       </td>
       <td><%= cart_item.item.with_tax_price %></td>
