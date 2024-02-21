@@ -12,6 +12,7 @@ class Admin::GenresController < ApplicationController
       redirect_to admin_genres_path
     else
       render :index
+    end
   end
 
   def edit
