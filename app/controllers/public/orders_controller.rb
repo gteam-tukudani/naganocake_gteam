@@ -12,15 +12,14 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.first_name + current_customer.last_name
     elsif params[:order][:address_option] == "1"
-       @address = Address.find(params[:order][:address_option])
+       @address = Address.find(params[:order][:address_id])
        @order.postal_code = @address.postal_code
        @order.address = @address.address
        @order.name = @address.name
     elsif params[:order][:address_option] == "2"
-      @order.current_customer_id = current_customer.id
+       @order.current_customer_id = current_customer.id
     end
       @cart_items = current_customer.cart_items
-      @order_new = Order.new
       render :confirm
   end
 
@@ -36,10 +35,10 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = "#{current_customer.last_name} #{current_customer.first_name}"
     when 1
-      registered_address = Address.find(params[:order][:address_option])
-      @order.postal_code = registered_address.postal_code
-      @order.address = registered_address.address
-      @order.name = registered_address.name
+      @address = Address.find(params[:order][:address_option])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
     when 2
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
@@ -84,7 +83,7 @@ class Public::OrdersController < ApplicationController
 private
 
   def order_params
-    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status, :address_option)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
   end
 
 end
