@@ -8,8 +8,8 @@
     <tr>
       <td>配送先</td>
       <td>
-          〒 <%= current_customer.postal_code %> <%= current_customer.address %><br />
-          <%= current_customer.last_name %><%= current_customer.first_name %>
+        〒 <%= @order.postal_code %> <%= @order.address %><br />
+        <%= @order.name %>
       </td>
     </tr>
     <tr>
@@ -42,6 +42,7 @@
       <td><%= detail.amount %></td>
       <td><%= detail.price * detail.amount %>円</td>
     </tr>
+    <% @sum += detail.price * detail.amount %>
   <% end %>
     </table>
 
@@ -49,7 +50,7 @@
   <table>
     <tr>
       <td>商品合計</td>
-      <td><%= @sum %></td>
+      <td><%= @sum * 1.1 %>円</td>
     </tr>
     <tr>
       <td>配送料</td>

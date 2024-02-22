@@ -4,6 +4,7 @@ class Public::HomesController < ApplicationController
     @items = Item.order(created_at: :desc)
   end
 
+
   def about
   end
 

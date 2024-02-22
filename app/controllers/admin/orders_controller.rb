@@ -24,7 +24,7 @@ class Admin::OrdersController < ApplicationController
     else
       render :show, alert: '注文ステータスの更新に失敗しました。'
     end
-end
+  end
 
 
 private
