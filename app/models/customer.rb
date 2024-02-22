@@ -16,6 +16,10 @@ class Customer < ApplicationRecord
     self.last_name_kana + "" + self.first_name_kana
   end
 
+  def active?
+    is_active
+  end
+
   private
 
   def set_default_is_active

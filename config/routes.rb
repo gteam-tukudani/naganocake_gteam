@@ -18,18 +18,18 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'homes/top'
   end
- 
+
 
   namespace :admin do
     get "/" =>'homes#top'
   end
-  namespace :public do
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/destroy_aii'
-    get 'cart_items/create'
-  end
+  # namespace :public do
+    # get 'cart_items/index'
+    # get 'cart_items/update'
+    # get 'cart_items/destroy'
+    # get 'cart_items/destroy_aii'
+    # get 'cart_items/create'
+  # end
 
   devise_for :customers, controllers: {
   registrations: "public/registrations",
@@ -38,11 +38,11 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
   sessions: "admin/sessions"
   }
-  
+
   devise_scope :admin do
     get '/admin/sign_out' => 'devise/sessions#destroy'
   end
-  
+
   devise_scope :customer do
     get '/customers/sign_out' => 'devise/sessions#destroy'
   end
@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   scope module: :public do
    root to: "homes#top"
    get "about" => "homes#about", as: 'about'
-   get "customers/mypage" => "customers#show"
+   get "customers/my_page" => "customers#show"
    get "customers/information/edit" => "customers#edit"
    patch "customers/information" => "customers#update"
   # 退会確認画面
@@ -70,7 +70,7 @@ Rails.application.routes.draw do
      post "orders/confirm" => "orders#confirm"
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
    delete "cart_items/destroy_all" => "cart_items#destroy_all"
-   resources :cart_items, only: [:index, :update, :destroy, :create]   
+   resources :cart_items, only: [:index, :update, :destroy, :create]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
