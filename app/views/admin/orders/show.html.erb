@@ -2,7 +2,7 @@
   <table>
     <tr>
       <td>購入者</td>
-      <td><%= current_customer.last_name %><%= current_customer.first_name %></td>
+      <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
     </tr>
     <tr>
       <td>注文日</td>
@@ -17,7 +17,7 @@
     </tr>
     <tr>
       <td>支払い方法</td>
-      <td><%= @order.payment_method_i18n%></td>
+      <td><%= @order.payment_method_i18n %></td>
     </tr>
     <tr>
       <td>注文ステータス</td>
@@ -41,13 +41,13 @@
 <% @order.order_details.each do |order_detail| %>
   <% @sum += order_detail.item.with_tax_price %>
 
-<%= form_with model: order_detail , url: admin_order_order_detail_path(order_detail.id) , method: :patch , local: true do |f| %>
+<%= form_with model: order_detail , url: admin_order_detail_path(order_detail.id) , method: :patch , local: true do |f| %>
     <table>
         <tr>
           <td><%= order_detail.item.name %></td>
           <td><%= order_detail.item.with_tax_price %></td>
           <td>
-            <%= f.select :making_status, OrderDetail.making_status_i18n.invert %>
+            <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
             <%= f.submit "更新", class: "btn btn-success" %>
           </td>
         </tr>
