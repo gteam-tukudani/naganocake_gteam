@@ -28,22 +28,6 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.status = :wait_payment
     @cart_items = current_customer.cart_items
-<<<<<<< HEAD
-    case params[:order][:address_option].to_i
-    when 0
-      @order.postal_code = current_customer.postal_code
-      @order.address = current_customer.address
-      @order.name = "#{current_customer.last_name} #{current_customer.first_name}"
-    when 1
-      @address = Address.find(params[:order][:address_option])
-      @order.postal_code = @address.postal_code
-      @order.address = @address.address
-      @order.name = @address.name
-    when 2
-      @order.postal_code = params[:order][:postal_code]
-      @order.address = params[:order][:address]
-      @order.name = params[:order][:name]
-    end
 
     if @order.save
       @cart_items.each do |item|
