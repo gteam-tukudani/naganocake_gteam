@@ -55,7 +55,6 @@
       </td>
     </tr>
   </table>
-
 <%= form_with model: @order_new , url: orders_path, local:true do |f| %>
   <%= f.hidden_field :payment_method, value:  @order.payment_method %>
   <%= f.hidden_field :shipping_cost, value: 800 %>
