@@ -1,3 +1,4 @@
+<%= flash[:notice] %>
 <%= form_with model: @order, url: '/orders/confirm' , local: true do |f| %>
   <h2>注文情報入力</h2>
   <h4>支払い方法</h4>
