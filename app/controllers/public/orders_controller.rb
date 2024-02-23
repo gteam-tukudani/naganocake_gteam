@@ -44,8 +44,7 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
     end
-=======
->>>>>>> 64b5a251026e964f29352bc323a7cec20f2899a1
+
     if @order.save
       @cart_items.each do |item|
         order_details = OrderDetail.new
