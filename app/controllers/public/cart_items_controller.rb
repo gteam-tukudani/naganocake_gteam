@@ -25,7 +25,13 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-
+  # 数量が選択されているかどうかのチェック
+    if params[:cart_item][:amount].blank?
+    flash[:notice] = '数量を選択してください。'  
+    redirect_to item_path(params[:cart_item][:item_id]) and return
+    end
+  
+    # 既存のカートアイテムの有無のチェック
     # cart_item.customer_id = current_customer.id
     # cart_item.item.id = cart_item_params[:item_id]
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
