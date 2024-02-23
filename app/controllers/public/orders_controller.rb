@@ -28,6 +28,7 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.status = :wait_payment
     @cart_items = current_customer.cart_items
+
     if @order.save
       @cart_items.each do |item|
         order_details = OrderDetail.new
