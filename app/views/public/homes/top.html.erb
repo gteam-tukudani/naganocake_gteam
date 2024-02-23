@@ -17,7 +17,7 @@
             <h4><b>♫新着商品♫</b></h4>
             <table>
               <tr>
-                <% @items.each do |item|%>
+                <% @items.order(created_at: :desc). limit(4).each do |item|%>
                   <td>
                     <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
                       <%= link_to(image_tag(url_for(item.image), alt: item.name, size: "200x180"), item_path(item)) if item.image.attached? %>
