@@ -2,8 +2,8 @@ class OrderDetail < ApplicationRecord
 
   belongs_to :order
   belongs_to :item
-  
-  enum manufacture_status:
+
+  enum making_status:
 
         {
 

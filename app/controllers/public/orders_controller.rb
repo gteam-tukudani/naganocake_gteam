@@ -28,6 +28,7 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.status = :wait_payment
     @cart_items = current_customer.cart_items
+<<<<<<< HEAD
     case params[:order][:address_option].to_i
     when 0
       @order.postal_code = current_customer.postal_code
@@ -43,6 +44,8 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
     end
+=======
+>>>>>>> 64b5a251026e964f29352bc323a7cec20f2899a1
     if @order.save
       @cart_items.each do |item|
         order_details = OrderDetail.new
