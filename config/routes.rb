@@ -72,6 +72,6 @@ Rails.application.routes.draw do
    delete "cart_items/destroy_all" => "cart_items#destroy_all"
    resources :cart_items, only: [:index, :update, :destroy, :create]
   end
-   get "/search", to: "searches#search"
+  get "search" => "searches#search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
