@@ -1,8 +1,8 @@
 <div class="container">
-  <% if flash[:notice] %> 
-    <div class="alert alert-danger"> 
+  <% if flash[:notice] %>
+    <div class="alert alert-danger">
       <%= flash[:notice] %>
-    </div>   
+    </div>
   <% end %>
   <div class="row">
     <%= render 'sidebar', genres: @genres %>
