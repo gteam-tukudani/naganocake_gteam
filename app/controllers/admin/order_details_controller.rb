@@ -5,7 +5,7 @@ class Admin::OrderDetailsController < ApplicationController
     @order_detail = OrderDetail.find(params[:id])
     if @order_detail.update(order_detail_params)
       order = @order_detail.order
-      if order.order_details.any? { |detail| detail.making_status == "making" }
+      if order.order_details.any? { |detail| detail.making_status == "manufacturing" }
         order.update!(status: :making)
       end
 
