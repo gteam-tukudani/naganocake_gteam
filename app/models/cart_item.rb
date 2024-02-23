@@ -5,7 +5,7 @@ class CartItem < ApplicationRecord
     has_one_attached :image
     
   def with_tax_price
-    (price * 1.10).round
+    (price * 1.1).floor
   end
 
     has_one_attached :image
