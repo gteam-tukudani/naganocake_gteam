@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-8 px-sm-0 ">
-      <h2 class="mt-5">商品編集</h2>
-      <br>
-      <br>
+      <h2 class="mt-5">商品編集</h2>    
     </div>
   </div>
   <div class="row">
@@ -39,11 +37,11 @@
               <%= f.label :is_active, "販売中止", value: false %>
             </td>
           </tr>
-          <tr>
-            <td colspan="2"><%= f.submit "変更を保存", class: "btn btn-success" %></td>
-          </tr>
         </table>
       <% end %>
+      <div class="d-flex justify-content-center mt-4">
+        <%= button_to "変更を保存", admin_item_path(@item), method: :patch, class: "btn btn-success btn-lg" %>
+      </div>
     </div>
   </div>
 </div>
