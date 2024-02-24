@@ -1,21 +1,37 @@
 <div class="container">
-  <div class="row">
-  <h2>会員一覧</h2>
-    <thead>
-      <tr>
-        <th>会員</th>
-        <th>氏名</th>
-        <th>メールアドレス</th>
-        <th>ステータス</th><br>
-      </tr>
-    </thead>
-    <% @customers.each do |customer| %>
-    <tr>
-      <td><%= link_to 'customer.id', admin_customer_path(customer) %></td>
-      <td><%= customer.first_name %> <%= customer.last_name %></td>
-      <td><%= customer.email %></td>
-      <td class="<%= customer.is_active ? 'text-green' : 'text-gray' %>"><%= customer.is_active ? '有効' :  '退会済み'%></td>
-    </tr>
-    <% end %>
+  <div class="row my-3">
+    <div class="col-sm-8 mt-3 px-sm-0 offset-sm-1">
+      <h2>会員一覧</h2>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-sm-10 px-sm-0 offset-sm-1">
+ 
+      <table class="table">
+        <thead>
+          <tr class="table-secondary"> 
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% page_offset = (@customers.current_page - 1) * @customers.limit_value %>       
+          <% @customers.each_with_index do |customer, index| %>     
+            <tr>
+              <td><%= link_to page_offset + index + 1, admin_customer_path(customer) %></td>
+              <td><%= customer.first_name %> <%= customer.last_name %></td>
+              <td><%= customer.email %></td>
+              <td class="<%= customer.is_active ? 'text-green' : 'text-gray' %>"><%= customer.is_active ? '有効' :  '退会済み'%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="pagination-container" style="display: flex; justify-content: center;">
+        <%= paginate @customers %>
+      </div>
+    </div>
   </div>
 </div>
