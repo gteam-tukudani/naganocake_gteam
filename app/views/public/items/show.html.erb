@@ -1,11 +1,11 @@
 <div class="container">
-  <% if flash[:notice] %> 
-    <div class="alert alert-danger"> 
+  <% if flash[:notice] %>
+    <div class="alert alert-danger">
       <%= flash[:notice] %>
-    </div>   
+    </div>
   <% end %>
   <div class="row">
-    <%= render 'sidebar', genres: @genres %>
+    <%= render 'searches/genre'%>
     <div class="col-sm-9">
       <div class="row mt-5">
         <div class="col-sm-5 px-sm-0">
@@ -38,7 +38,7 @@
               </tr>
               <tr>
                 <td colspan="2" class="pt-3">
-                  <% if @item.is_active == true && customer_signed_in? %>
+                  <% if @item.is_active == true %>
                     <%= form_with model: @cart_item, url: cart_items_path, local: true, class: "d-flex justify-content-start" do |f| %>
                       <%= f.hidden_field :item_id, value: @item.id %>
                       <div class="mr-2">
@@ -47,7 +47,7 @@
                       <%= f.submit 'カートに入れる', class: "btn btn-sm btn-success" %>
                     <% end %>
                   <% else %>
-                    <p class="mt-3">ログインしてください。</p>
+                    <p class="mt-3">商品は販売中止しています</p>
                   <% end %>
                 </td>
               </tr>

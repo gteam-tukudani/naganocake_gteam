@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-
+  before_action :authenticate_customer!
   def new
     @order = Order.new
     @addresses = Address.all
@@ -17,7 +17,7 @@ class Public::OrdersController < ApplicationController
        @order.address = @address.address
        @order.name = @address.name
     elsif params[:order][:address_option] == "2"
-       @order.current_customer_id = current_customer.id
+       @order.customer_id = current_customer.id
     end
       @cart_items = current_customer.cart_items
       render :confirm

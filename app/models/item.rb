@@ -7,11 +7,14 @@ class Item < ApplicationRecord
   has_many :orders, through: :ordr_details
 
   belongs_to :genre
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
+
 
    validates :price, presence: true, numericality: { greater_than: 0 }
 
    def with_tax_price
     (price * 1.1).floor
    end
-
 end
