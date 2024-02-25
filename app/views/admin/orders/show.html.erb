@@ -1,70 +1,81 @@
-<%= form_with model: @order, url: admin_order_path, method: :patch, local: true do |f| %>
-  <table>
-    <tr>
-      <td>購入者</td>
-      <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
-    </tr>
-    <tr>
-      <td>注文日</td>
-      <td><%= l @order.created_at, format: :month_day %></td>
-    </tr>
-    <tr>
-      <td>配送先</td>
-      <td>
+<div class="container">
+  <h3 class="py-3">注文履歴詳細</h3>
+  <%= form_with model: @order, url: admin_order_path, method: :patch, local: true do |f| %>
+    <div class="row">
+      <label class="col-lg-3">購入者</label>
+      <div class="col-lg-3">
+        <%= @order.customer.last_name %><%= @order.customer.first_name %>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-lg-3">注文日</label>
+      <div class="col-lg-3">
+        <%= l @order.created_at, format: :month_day %>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-lg-3">配送先</label>
+      <div class="col-lg-3">
         〒 <%= @order.postal_code %> <%= @order.address %><br />
         <%= @order.name %>
-    </td>
-    </tr>
-    <tr>
-      <td>支払い方法</td>
-      <td><%= @order.payment_method_i18n %></td>
-    </tr>
-    <tr>
-      <td>注文ステータス</td>
-      <td>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-lg-3">支払い方法</label>
+      <div class="col-lg-3">
+        <%= @order.payment_method_i18n %>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <label class="col-lg-3">注文ステータス</label>
+      <div class="col-lg-3">
         <%= f.select :status, Order.statuses_i18n.invert %>
-        <%= f.submit "更新", class: "btn btn-success" %>
-      </td>
-    </tr>
-  </table>
-<% end %>
+        <%= f.submit "更新", class: "btn btn-success ml-2" %>
+      </div>
+    </div>
 
-<table>
-  <tr>
-    <td>商品名</td>
-    <td>単価(税込)</td>
-    <td>数量</td>
-    <td>小計</td>
-    <td>製作ステータス</td>
-  </tr>
-  <% @sum = 0 %>
-<% @order.order_details.each do |order_detail| %>
-  <% @sum += order_detail.item.with_tax_price * order_detail.amount %>
-
-<%= form_with model: order_detail , url: admin_order_detail_path(order_detail.id) , method: :patch , local: true do |f| %>
-    <table>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.item.with_tax_price %></td>
-          <td><%= order_detail.amount %></td>
-        　<td><%= order_detail.item.with_tax_price * order_detail.amount %></td>
-          <td>
-            <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
-            <%= f.submit "更新", class: "btn btn-success" %>
-          </td>
+          <td class="table-active">商品名</td>
+          <td class="table-active">単価(税込)</td>
+          <td class="table-active">数量</td>
+          <td class="table-active">小計</td>
+          <td class="table-active">製作ステータス</td>
         </tr>
-<% end %>
-      <tr>
-        <td>商品合計</td>
-        <td><%= @sum %>円</td>
-      </tr>
-      <tr>
-        <td>送料</td>
-        <td>800円</td>
-      </tr>
-      <tr>
-        <td>請求金額合計</td>
-        <td><%= @sum + 800 %>円</td>
-      </tr>
-  </table>
-<% end %>
+      </thead>
+      <tbody>
+        <% @sum = 0 %>
+        <% @order.order_details.each do |order_detail| %>
+          <% @sum += order_detail.item.with_tax_price * order_detail.amount %>
+          <tr>
+            <td class="align-middle"><%= order_detail.item.name %></td>
+            <td class="align-middle"><%= order_detail.item.with_tax_price %></td>
+            <td class="align-middle"><%= order_detail.amount %></td>
+            <td class="align-middle"><%= order_detail.item.with_tax_price * order_detail.amount %></td>
+            <td class="align-middle">
+              <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
+              <%= f.submit "更新", class: "btn btn-success ml-2" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <div class="container">
+    <div class="d-flex justify-content-end">
+      <div class="d-flex justify-content-between">
+        <div>
+          <div class="pr-3 py-1 font-weight-bold">商品合計</div>
+          <div class="pr-3 py-1 font-weight-bold">送料</div>
+          <div class="pr-3 py-1 font-weight-bold">請求金額合計</div>
+        </div>
+        <div>
+          <div class="py-1"><%= @sum %>円</div>
+          <div class="py-1">800円</div>
+          <div class="py-1"><%= @sum + 800 %>円</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
