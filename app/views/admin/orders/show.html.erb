@@ -33,6 +33,7 @@
         <%= f.submit "更新", class: "btn btn-success ml-2" %>
       </div>
     </div>
+    <% end %>
 
     <table class="table">
       <thead>
@@ -44,10 +45,12 @@
           <td class="table-active">製作ステータス</td>
         </tr>
       </thead>
+
       <tbody>
         <% @sum = 0 %>
         <% @order.order_details.each do |order_detail| %>
           <% @sum += order_detail.item.with_tax_price * order_detail.amount %>
+          <%= form_with model: order_detail , url: admin_order_detail_path(order_detail.id) , method: :patch , local: true do |f| %>
           <tr>
             <td class="align-middle"><%= order_detail.item.name %></td>
             <td class="align-middle"><%= order_detail.item.with_tax_price %></td>
