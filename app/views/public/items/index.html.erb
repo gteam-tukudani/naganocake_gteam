@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="row">    
+  <div class="row">
     <%= render 'searches/genre'%>
     <div class="col-sm-9">
       <div class="row">
         <div class="col-sm-12 px-sm-0 mt-5">
           <h2>商品一覧(全<%= @item.count %>件)</h2>
         </div>
-      </div>     
+      </div>
       <div class="row mt-3 mb-3">
         <% @item.each do |item| %>
           <div class="col-12 col-sm-6 col-md-6 col-lg-3">
@@ -19,7 +19,7 @@
               <div class="card-body">
                 <p class="item-details item-name card-text"><%= item.name %></p>
                 <% if item.is_active %>
-                  <p class="item-details card-text"><%= item.price %>円(税込)</p>
+                  <p class="item-details card-text"><%= item.price %>円(税抜)</p>
                 <% else %>
                   <p class="text-danger font-weight-bold card-text">販売停止中</p>
                 <% end %>
@@ -27,7 +27,7 @@
             </div>
           </div>
         <% end %>
-      </div>    
+      </div>
       <div class="d-flex justify-content-center">
         <%= paginate @item, class: "pagination justify-content-center" %>
       </div>
