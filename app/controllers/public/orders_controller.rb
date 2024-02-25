@@ -16,11 +16,14 @@ class Public::OrdersController < ApplicationController
        @order.postal_code = @address.postal_code
        @order.address = @address.address
        @order.name = @address.name
-    elsif params[:order][:address_option] == "2"
+    elsif params[:order][:address_option] == "2" && params[:order][:postal_code].present? && params[:order][:address].present? && params[:order][:name].present?
        @order.customer_id = current_customer.id
+    else
+       @addresses = current_customer.addresses
+       flash[:notice] = "必要な情報を入力してください。"
+       render :new
     end
-      @cart_items = current_customer.cart_items
-      render :confirm
+    @cart_items = current_customer.cart_items
   end
 
   def create
