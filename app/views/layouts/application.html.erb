@@ -8,9 +8,22 @@
     <script src="https://kit.fontawesome.com/bda3669fb4.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      header{
+        background-color: #ADD8E6;
+        color:  #808080;
+        padding: 20px;
+      }
+
+      footer{
+        background-color: #ADD8E6;
+        color:  #fff;
+        padding: 20px;
+      }
+    </style>
   </head>
 
-  <body>
+  <body style="background-color: #FFFFE0;">
     <%= render 'layouts/header' %>
     <main>
       <%= yield %>
