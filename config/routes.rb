@@ -64,10 +64,10 @@ Rails.application.routes.draw do
    patch "customers/withdraw" => "customers/withdraw"
    resources :items, only: [:index, :show]
   # resources :cart_items, only: [:show, :edit, :index, :create, :update, :destroy]
+  post "orders/confirm" => "orders#confirm"
    resources :orders, only: [:new, :create, :show, :index] do
      get 'thanks', on: :collection
    end
-     post "orders/confirm" => "orders#confirm"
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
    delete "cart_items/destroy_all" => "cart_items#destroy_all"
    resources :cart_items, only: [:index, :update, :destroy, :create]
