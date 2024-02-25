@@ -9,9 +9,13 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    customer = current_customer
-    customer.update(customer_params)
-    redirect_to customers_my_page_path
+    @customer = current_customer
+    if @customer.update(customer_params)
+      redirect_to customers_my_page_path, notice: "編集内容を保存しました。"
+    else
+      flash.now[:alert] = "必要な情報を入力してください"
+      render :edit
+    end
   end
 
   # 論理的削除のアクション
