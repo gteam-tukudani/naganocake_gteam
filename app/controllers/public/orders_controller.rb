@@ -56,8 +56,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
     @customer = current_customer
+    @orders = @customer.orders.all
+
   end
 
   def show
