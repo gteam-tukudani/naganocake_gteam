@@ -2,8 +2,8 @@ class Public::AddressesController < ApplicationController
   before_action :authenticate_customer!
   def index
     @customer = current_customer
-    @addresses = @customer.addresses.all
     @address = Address.new
+    @addresses = @customer.addresses.all
 
   end
 
@@ -14,7 +14,7 @@ class Public::AddressesController < ApplicationController
       flash.now[:notice] = '登録が完了しました。'
       redirect_to addresses_path
     else
-      @addresses = Address.all
+      @addresses = current_customer.addresses
       flash.now[:notice] = '配送先の登録に失敗しました。入力内容を確認してください。'
       render :index
     end
